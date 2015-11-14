@@ -1,0 +1,131 @@
+Daniel Garcia
+CS200 Fall 2012
+Card Game V1: Triple Triad
+
+Purpose/Overview
+
+Purpose of the program is to create a fully functional simplified version of a card game.
+The program must implement at least Five Classes: Card, Deck, Player, Game and Application.
+
+Requirements:
+Implement the five classes mentioned above, must be fully playable, as well as enjoyable.
+
+Classes:
+Application: It will create the frame in which the game will run. It is the main class
+     member:
+          Rectangle background = for the frame
+          int maxX = for the width of the frame
+          int maxY = for the height of the frame
+          Game myGame = to run the game program
+
+     method: 
+         public TripleTriad() = Constructor. Creates the frame, and runs the game
+         public void paint(Graphics g) = pass the graphics to the game
+
+Game: The actual rules of the game
+     member:
+         TripleTriad myApp = to display on the frame
+         Player player1 = for creating the player object
+         Player player2 = for creating the player object
+         Board newBoard = for creating the board
+         MusicPlayer mp = to add background music
+         Timer tm = to loop the background music
+         boolean selectMode = Player can select a card
+         boolean locationMode = Player can place a card on the board
+         int playerTurn = whose turn is it?
+         int cardLocation = where on the board you want to place the card
+         int cardSelected = what card you selected from your hand
+         int whoWon = the player who won
+         int p1Score = the score of player 1
+         int p2Score = the score of player 2
+         ImageIcon boardImage = the image of the board
+         ImageIcon p1Victory = player victory name
+         ImageIcon p2Victory = player victory name
+         ImageIcon youWin = image of "YOU WIN!"
+         ImageIcon draw = image of a draw game
+         ImageIcon selector = image of the hand of whose turn it is
+
+     method:
+
+         public Game(TripleTriad ga): Constructor. for frame manipulation
+         public void startGame(): Sets initial values and modes for the game
+         public void reStartGame(): resets values, cards, hands, to begin a new game.
+         public void paintGAme(Graphics2D g2): Draws in the Frame
+         public void actionPerformed(ActionEvent ae): for looping the music
+         public void basicRule(): Use of the basic rule
+         public void checkGameOver(): Checks if the board is full
+         public void gameOver(): Who won? or is it a draw?
+         public boolean player1SelectCard(): Can p1 select a card?
+         public boolean player2SelectCard(): can p2 select a card?
+         public boolean checkFreeSpace(): is the location available?
+         public void sameRule(): Use of the sameRule
+         public void plusRule(): Use of the plusRule
+         public void updateScore(): updates the score
+         public void cardSelectAnim(int index, Player P): What card did you choose?
+         DirectionKeyListener: User Input
+
+Player: The hand the player has
+     member:
+         ArrayList myHand = the cards the player has
+         Deck myDeck = what available cards the player has
+         int HAND_SIZE = size of the hand
+
+     method:
+         public Player(int whatPlayer)= Creates a hand for the player
+         public void newHand(int whatPlayer) = Creates a new hand for the player
+         public Card hadCard(int index) = returns the card at wanted location
+         public ArrayList gethand() = returns the whole hand
+         public int gethandPlayerCard(int index) = returns who the card belongs to...
+
+Deck: to create the deck of cards
+     member:
+         ArrayList cardDeck = for the deck
+      
+     method:
+         public Deck(): Creates Cards and stores them in the deck
+         public void shuffle() = shuffles the cards on the deck
+         public Card getCard(int index) = get the the card from the desired location
+     
+Card: all of the information of the card
+     member:
+         int upValue, rightValue, leftValue, downValue = obtain the values of the card
+          int cardX, cardY = x and y coordinates of the card
+          String cardName = the name of the card
+          int cardPlayer = who does the card belong to...
+          boolean beenPlayed = is the card on the board?
+          ImageIcon cardblueImage,cardredImage = storing the image
+ 
+     methodc:
+         public Card(all info values)= Creates a card
+         public void paintCard(JFrame, Graphics, int, int) = paints the card
+         public void setPlayerCard(int i) = card has new owner
+         public void setCardLocation(int newX, int newY) = sets the location of card
+         public int getCardX(), getCardY() = get the x and y coordinates
+         public int getUpValue(), getRightValue(), getDownValue, getLeftValue()
+         public int setToPlayed()= card has been played
+         public getPlayerCard() = return who it belongs to
+         public String getName() = return the name of the card
+
+ Global Data:
+      there is no global data
+ 
+  High-level Architecture:
+       The game starts and player 1 gets to start. Player 1 selects a card and places 
+it on the board. The program checks if the basic, same or plus rule apply. Then player 2 gets
+to place a card. The game finishes until the board is full. The program checks who won and displays
+the according victory image.
+
+   User Interface:
+       There are no GUI elements. The players only inputs two keys: A,S,D,F,G - to select a card
+      1, 2, 3, 4, 5, 6, 7, 8 , 9 - for the desired location of where to put the card. The program displays
+the cards' images on the frame. On the console, the program prints the card selected, if the player won any cards, 
+and asks the user to input a command.
+
+   Test Cases:
+ - Make sure the cards have their corresponding information
+ - Make sure the cards display on the frame
+ - Make sure the the cards display on the right locations
+ - Test each rule individually
+ - Make sure the game flows naturally
+ - Make sure the user knows whose turn it is, and if they selected a card
+ - Make sure the game ends and restarts
